@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static Menu with Dynamic Content</title>
+    <style>
+        /* Style for the menu */
+        .menu {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        .menu li {
+            display: inline-block;
+            padding: 10px 20px;
+        }
+        .menu a {
+            text-decoration: none;
+            color: black;
+        }
+        .content {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<ul class="menu">
+    <li><a href="#" onclick="loadContent('home')">Home</a></li>
+    <li><a href="#" onclick="loadContent('about')">About</a></li>
+    <li><a href="#" onclick="loadContent('login')">Login</a></li>
+    <li><a href="#" onclick="loadContent('register')">Register</a></li>
+    <li><a href="#" onclick="loadContent('view')">Course</a></li>
+    <li><a href="#" onclick="loadContent('upload')">Upload</a></li>
+    <li><a href="#" onclick="loadContent('contact')">Contact</a></li>
+</ul>
+
+<div class="content" id="dynamic-content">
+    <!-- Content will be loaded here -->
+</div>
+
+<script>
+    function loadContent(filename) {
+        fetch(filename)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('dynamic-content').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading content:', error));
+    }
+</script>
+
+</body>
+</html>
